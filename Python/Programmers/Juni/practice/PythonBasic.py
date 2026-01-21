@@ -1,4 +1,6 @@
 # 프로그래머스 
+
+### 2026-01-20
 # 두 수의 연산값 비교하기 (연산)
 def solution(a, b):
     answer = 0
@@ -112,3 +114,52 @@ def solution(myString):
             answer += i
     
     return answer
+
+
+###2026-01-21 
+
+# 주사위 게임 1 (조건문 활용)
+def solution(a, b):
+    answer = 0
+    
+    if (a % 2 == 1 and b % 2 == 1 ):
+        answer += a**2 + b**2
+    elif (a % 2 == 1 or b % 2 == 1 ):
+        answer += 2*(a+b)
+    else:
+        answer = abs(a-b)
+        
+    return answer
+
+# 가까운 1 찾기  (리스트(배열))
+def solution(arr, idx):
+    answer = -1
+    
+    for i in range(idx, len(arr)):
+        if (arr[i] == 1):
+            answer = i
+            break
+    
+    return answer
+
+# 수열과 구간 쿼리2 (반복문)
+def solution(arr, queries):
+    answer = []
+    
+    for i in range(len(queries)):
+        abc = []
+        a = queries[i][0]
+        b = queries[i][1]
+        c = queries[i][2]
+        
+        for j in range(a, b+1):
+            if (arr[j] > c):
+                abc.append(arr[j])
+        
+        if (len(abc) == 0):
+            answer.append(-1)
+        else:
+            answer.append(min(abc))
+            
+    return answer
+
