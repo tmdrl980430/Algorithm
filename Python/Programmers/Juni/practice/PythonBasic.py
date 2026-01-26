@@ -163,3 +163,55 @@ def solution(arr, queries):
             
     return answer
 
+
+###2026-01-22 
+
+
+# 주사위 게임3 (조건문)
+# 생각 및 접근을 너무 이상하게 했다... 다음에는 더 좋은 생각으로 풀기
+def solution(a, b, c, d):
+    answer = 0
+    diceArr = [a,b,c,d] # 입력받은 수들의 배열
+    
+    sumArr = [a] # 같은 숫자 몇갠지 담는 배열
+    differntArr = [] # 다른 수 담는 배열
+    
+    for i in range(1,len(diceArr)):
+        if (diceArr[i] == a):
+            sumArr.append(diceArr[i])
+        else:
+            differntArr.append(diceArr[i])
+            
+    # 4개 전부 같을 때
+    if (len(sumArr) == 4): 
+        answer = 1111 * a
+    # 초기값과 비교해서 3개 같을 때
+    elif (len(sumArr) == 3): 
+        answer = (10 * sumArr[0] + differntArr[0])**2             
+    # 초기값과 비교해서 2개 같을 때 
+    elif (len(sumArr) == 2): 
+        if (differntArr[0] == differntArr[1]):  # 두개씩 같은 값
+            answer = (sumArr[0] + differntArr[0]) * abs(sumArr[0] - differntArr[0])
+        else:       # 두개만 같고 나머지 두개는 다른 값
+            answer = differntArr[0] * differntArr[1] 
+    # 초기값과 비교해서 다른 값이 3개
+    else:
+        # 3개 같고 1개 다름
+        if (differntArr[0] == differntArr[1] == differntArr[2]):    
+            answer = (10 * differntArr[0] + sumArr[0])**2    
+        # 초기값과 비교해서 다른 수 2개가 같음 (1)
+        elif (differntArr[0] == differntArr[1]):
+            answer = sumArr[0] * differntArr[2]
+        # 초기값과 비교해서 다른 수 2개가 같음 (1)
+        elif (differntArr[0] == differntArr[2]):
+            answer = sumArr[0] * differntArr[1]
+        # 초기값과 비교해서 다른 수 2개가 같음 (1)
+        elif (differntArr[1] == differntArr[2]):
+            answer = sumArr[0] * differntArr[0]
+        # 4개 숫자 다 다름
+        elif (a != differntArr[0] != differntArr[1] != differntArr[2]):  
+            answer = min(diceArr)
+        
+    return answer
+
+
