@@ -40,3 +40,4 @@ def solution(tickets):
     print(tickets)
     
     return answer[0]
+
